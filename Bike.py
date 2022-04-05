@@ -1,11 +1,7 @@
-Python 3.10.1 (tags/v3.10.1:2cd268a, Dec  6 2021, 19:10:37) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
->>>
 import time
 import pandas as pd
 import numpy as np
 
-# Data 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -17,6 +13,7 @@ days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
+
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -69,6 +66,7 @@ def get_filters():
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
+
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -180,14 +178,14 @@ def user_stats(df):
     # TO DO: Display counts of user types
 
     print('Counts of user types:\n', df['User Type'].value_counts())
-
-    #except Washington
     if city == 'washington':
-        print('\n The Gender and Birth Year information is not available for Washington.')
-    else:
+     print('\n The Gender and Birth Year information is not available for Washington.')
+    else:       
     # TO DO: Display counts of gender
-    print('\nCounts of gender:\n', df['Gender'].value_counts())
+     print('\nCounts of gender:\n', df['Gender'].value_counts())
+    
     # TO DO: Display earliest, most recent, and most common year of birth
+
     print('\nThe Earliest year of birth: ', int(df['Birth Year'].min()))
     print('\n Most common year of birth: ', int(df['Birth Year'].mode()[0]))
     print('\n The latest year of birth: ', int(df['Birth Year'].max()))
@@ -203,13 +201,13 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-        user_stats(df)
+        user_stats(df,city)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
-        if restart.lower() != 'yes':
-            break
-
- else:
+        while True:
+            show_data = input('\nDo you want to explore the raw data? Enter yes or no.: \n')
+            if show_data.lower() != 'yes':
+                break
+            else:
                 print('\nAfter applying filters, the dataset for {} contains {} rows.'.format(city,df.shape[0]))
                 print('The raw data is displayed below as requested.\n', df.head(5))
                 head = 0
@@ -224,7 +222,6 @@ def main():
                         break
                 break
                         
-        
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
@@ -233,4 +230,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
-	
+
