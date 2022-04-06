@@ -1,3 +1,1 @@
-$ Bike .gitignore
-    # exclude everything except directory Chicago.csv and new_york_city.csv and washington.csv
-    /*
+Removes and ignore pesky washington.csv file
